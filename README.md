@@ -260,4 +260,4 @@ get_group_msg_history       收群消息（QQ → DSH）
 
 ## 改动记录
 
-见 [CHANGELOG.md](CHANGELOG.md)。版本号规矩：每改一次 +0.0.1，末位满 10 进位。
+见 [CHANGELOG.md](CHANGELOG.md)。
