@@ -41,7 +41,7 @@ const exports = 捕获.factory(假require)
 let 挂了 = 0
 const 报 = (标签, 过, 详情) => { if (!过) 挂了++; console.log(`${过 ? 'PASS' : 'FAIL'}  ${标签}${详情 ? '  :: ' + 详情 : ''}`) }
 
-报('模块 id = dsh-qq-bridge-personal', 捕获.id === 'dsh-qq-bridge-personal', 捕获.id)
+报('模块 id = dsh-qq-bridge-personal', 捕获.id === 'dsh-yu-qq', 捕获.id)
 报('inject 只依赖 slots', Array.isArray(exports.inject) && exports.inject.join() === 'slots')
 
 let 注册 = null
