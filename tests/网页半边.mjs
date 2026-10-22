@@ -1,4 +1,4 @@
-// 「通到 QQ」网页半边冒烟测试 —— 用假的 React / 假的 slots 把设置页渲染成一棵对象树。
+// 「QQ大肥鱼」网页半边冒烟测试 —— 用假的 React / 假的 slots 把设置页渲染成一棵对象树。
 // 验：模块 id、inject、挂到 settings.section（id=qq-bridge）、关键元素都渲染出来、不抛错。
 // 跑法： node tests/网页半边.mjs
 
@@ -41,7 +41,7 @@ const exports = 捕获.factory(假require)
 let 挂了 = 0
 const 报 = (标签, 过, 详情) => { if (!过) 挂了++; console.log(`${过 ? 'PASS' : 'FAIL'}  ${标签}${详情 ? '  :: ' + 详情 : ''}`) }
 
-报('模块 id = dsh-qq-bridge', 捕获.id === 'dsh-qq-bridge', 捕获.id)
+报('模块 id = dsh-qq-bridge', ['dsh-qq-bridge', 'dsh-qq-bridge-personal'].includes(捕获.id), 捕获.id)
 报('inject 只依赖 slots', Array.isArray(exports.inject) && exports.inject.join() === 'slots')
 
 let 注册 = null
@@ -66,7 +66,7 @@ const 初始态 = {
 状态槽 = [初始态]
 const 树 = 组件()
 const 文 = JSON.stringify(树)
-const 要有 = ['通到 QQ', '总开关', '试运行', '目标会话', '私聊 QQ 号', '群号', '测试一句', '保存设置', '测试会话', '连着的 QQ：测试号（10001）']
+const 要有 = ['QQ大肥鱼', '总开关', '试运行', '目标会话', '私聊 QQ 号', '群号', '测试一句', '保存设置', '测试会话', '连着的 QQ：测试号（10001）']
 const 缺 = 要有.filter((x) => !文.includes(x))
 报('关键元素都渲染出来（含连接状态 + 目标会话标题）', 缺.length === 0, 缺.length ? '缺：' + 缺.join('、') : 文.length + ' 字节')
 

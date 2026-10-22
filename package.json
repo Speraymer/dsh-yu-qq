@@ -1,9 +1,12 @@
 {
-  "name": "dsh-qq-bridge",
-  "version": "0.3.4",
-  "description": "通到 QQ：DSH 里的 AI 伙伴和 QQ 双向互通 —— 它说完话自动发到 QQ，你在 QQ 里说的话自动转进 DSH。走 OneBot 11 HTTP（SnowLuma / NapCat 都行）。",
+  "name": "dsh-yu-qq",
+  "version": "0.4.1",
+  "description": "通到 QQ（个人改版）：群消息不再只认一个人 —— 它能看到群里所有人说的话，自己决定要不要接。基于 Yuuyuko-uu/dsh-qq-bridge（MIT）。",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "test:security": "node --test tests/security.test.mjs"
+  },
   "main": "lib/host.js",
   "exports": {
     ".": "./lib/host.js",
@@ -30,16 +33,17 @@
       "external": [
         "react"
       ]
-    }
+    },
+    "基于": "git+https://github.com/Yuuyuko-uu/dsh-qq-bridge.git"
   },
   "author": "Yuuyuko-uu (https://github.com/Yuuyuko-uu)",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Yuuyuko-uu/dsh-qq-bridge.git"
+    "url": "git+https://github.com/Speraymer/dsh-yu-qq.git"
   },
-  "homepage": "https://github.com/Yuuyuko-uu/dsh-qq-bridge#readme",
+  "homepage": "https://github.com/Speraymer/dsh-yu-qq#readme",
   "bugs": {
-    "url": "https://github.com/Yuuyuko-uu/dsh-qq-bridge/issues"
+    "url": "https://github.com/Speraymer/dsh-yu-qq/issues"
   },
   "publishConfig": {
     "access": "public",

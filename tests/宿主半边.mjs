@@ -179,7 +179,9 @@ const 状态 = 存储[0]
 const 收 = (body) => {
   存储.length = 0
   return new Promise((resolve) => {
-    路由.get('/dsh-qq-bridge/receive')([JSON.stringify(body)], fakeRes).then(() => resolve(存储[0]))
+    const req = [JSON.stringify(body)]
+    req.method = 'POST'
+    路由.get('/dsh-qq-bridge/receive')(req, fakeRes).then(() => resolve(存储[0]))
   })
 }
 writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
@@ -214,7 +216,7 @@ writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
   总开关: true, 试运行: false, 目标会话: 'session-Z', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
 }, null, 2), 'utf8')
 收到 = await 收({ text: '在吗' })
-报('/receive：目标会话没活着 → 拒绝', 收到 && 收到.ok === false && String(收到.说).includes('没活着'), JSON.stringify(收到))
+报('/receive：目标会话没活着 → 拒绝', 收到 && 收到.ok === false && String(收到.说).includes('不在了'), JSON.stringify(收到))
 
 // ⑬ 轮询收消息（QQ → DSH 这半的正式入口，不赖 BOT）
 writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
