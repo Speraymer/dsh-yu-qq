@@ -124,3 +124,9 @@ const 库 = {
 })
 
 console.log(过 + ' 项通过' + (process.exitCode ? '（有失败）' : ' ✅'))
+
+测('被点名时明确要求「这条要接」，不许 SHUTUP', () => {
+  const 文 = 群聊素材(['[m:1] 主人：@大肥鱼 在吗'], 'auto', null, true)
+  assert.match(文, /这条要接/)
+  assert.match(文, /别 SHUTUP/)
+})
