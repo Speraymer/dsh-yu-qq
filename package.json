@@ -1,6 +1,6 @@
 {
   "name": "dsh-yu-qq",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "通到 QQ（个人改版）：群消息不再只认一个人 —— 它能看到群里所有人说的话，自己决定要不要接。基于 Yuuyuko-uu/dsh-qq-bridge（MIT）。",
   "license": "MIT",
   "type": "module",

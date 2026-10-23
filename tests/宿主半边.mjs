@@ -7,7 +7,7 @@
 //   5) /state 路由能回出配置和 NapCat 探活结果
 // 跑法： node tests/宿主半边.mjs
 
-import { mkdtempSync, writeFileSync, rmSync } from 'node:fs'
+import { mkdtempSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
@@ -18,7 +18,7 @@ process.env.DSH_HOME = 家
 writeFileSync(
   join(家, 'qq-bridge-config.json'),
   JSON.stringify({
-    总开关: true, 试运行: false, 目标会话: 'session-X', 私聊QQ: '123', 群号: '',
+    总开关: true, 试运行: false, 目标会话: 'session-X', 私聊会话: 'session-P', 私聊QQ: '123', 群号: '',
     转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
   }, null, 2),
   'utf8',
@@ -92,7 +92,7 @@ const ctx = {
   effect: (fn) => { const 摘 = fn(); return () => { try { 摘 && 摘() } catch {} } },
   webServer: { register: (o) => 路由.set(o.path, o.handler) },
   logger: { info: () => {} },
-  agents: { get: (id) => (String(id) === 'session-X' ? 假agent : undefined) },
+  agents: { get: (id) => (['session-X', 'session-P'].includes(String(id)) ? 假agent : undefined) },
   sessions: { flush: async () => {} },
   interval: (fn) => { 轮询回调 = fn; return () => {} },
   get: () => undefined,
@@ -148,7 +148,7 @@ await new Promise((r) => setTimeout(r, 20))
 
 // ⑥ 试运行开 → fetch 不被打
 writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
-  总开关: true, 试运行: true, 目标会话: 'session-X', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
+  总开关: true, 试运行: true, 目标会话: 'session-X', 私聊会话: 'session-P', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
 }, null, 2), 'utf8')
 const 之前6 = 发了.length
 监听[0](会话, 助手消息(12, 1, [块('text', 'try')], false))
@@ -158,7 +158,7 @@ await new Promise((r) => setTimeout(r, 20))
 
 // ⑦ 总开关关 → fetch 不被打
 writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
-  总开关: false, 试运行: false, 目标会话: 'session-X', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
+  总开关: false, 试运行: false, 目标会话: 'session-X', 私聊会话: 'session-P', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
 }, null, 2), 'utf8')
 const 之前7 = 发了.length
 监听[0](会话, 助手消息(13, 1, [块('text', 'off')], false))
@@ -185,7 +185,7 @@ const 收 = (body) => {
   })
 }
 writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
-  总开关: true, 试运行: false, 目标会话: 'session-X', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
+  总开关: true, 试运行: false, 目标会话: 'session-X', 私聊会话: 'session-P', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
 }, null, 2), 'utf8')
 
 let 收到 = await 收({ text: '宝宝你在吗' })
@@ -198,7 +198,7 @@ if (转进的[0]) {
 
 // ⑩ 总开关关 → receive 拒绝
 writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
-  总开关: false, 试运行: false, 目标会话: 'session-X', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
+  总开关: false, 试运行: false, 目标会话: 'session-X', 私聊会话: 'session-P', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
 }, null, 2), 'utf8')
 const 之前收 = 转进的.length
 收到 = await 收({ text: '还开着吗' })
@@ -206,7 +206,7 @@ const 之前收 = 转进的.length
 
 // ⑪ 空 text → 拒绝
 writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
-  总开关: true, 试运行: false, 目标会话: 'session-X', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
+  总开关: true, 试运行: false, 目标会话: 'session-X', 私聊会话: 'session-P', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
 }, null, 2), 'utf8')
 收到 = await 收({ text: '   ' })
 报('/receive：空 text → 拒绝', 收到 && 收到.ok === false, JSON.stringify(收到))
@@ -220,7 +220,7 @@ writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
 
 // ⑬ 轮询收消息（QQ → DSH 这半的正式入口，不赖 BOT）
 writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
-  总开关: true, 试运行: false, 目标会话: 'session-X', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
+  总开关: true, 试运行: false, 目标会话: 'session-X', 私聊会话: 'session-P', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
 }, null, 2), 'utf8')
 const 之前转 = 转进的.length
 私聊消息文本 = '宝宝你在吗'
@@ -239,7 +239,7 @@ await new Promise((r) => setTimeout(r, 20))
 
 // ⑭ 轮询：总开关关 → 不转
 writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
-  总开关: false, 试运行: false, 目标会话: 'session-X', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
+  总开关: false, 试运行: false, 目标会话: 'session-X', 私聊会话: 'session-P', 私聊QQ: '123', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
 }, null, 2), 'utf8')
 私聊消息文本 = '还开着吗'
 私聊消息id = 9002
@@ -248,6 +248,6 @@ await 轮询回调()
 await new Promise((r) => setTimeout(r, 20))
 报('轮询：总开关关 → 不转', 转进的.length === 之前转 + 1, '转进条数=' + 转进的.length)
 
-rmSync(家, { recursive: true, force: true })
+// 保留临时测试目录，便于回滚和排查。
 console.log(`\n${挂了 === 0 ? '全部通过 ✅' : `有 ${挂了} 条没过 ❌`}`)
 process.exitCode = 挂了 === 0 ? 0 : 1
