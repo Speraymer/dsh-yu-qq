@@ -1,7 +1,7 @@
 {
   "name": "dsh-yu-qq",
-  "version": "1.1.1",
-  "description": "通到 QQ（个人改版）：群消息不再只认一个人 —— 它能看到群里所有人说的话，自己决定要不要接。基于 Yuuyuko-uu/dsh-qq-bridge（MIT）。",
+  "version": "2.0.0",
+  "description": "DSH QQ 双向桥：群聊和私聊分会话、点名响应、离线补收、引用与表情支持。",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -33,10 +33,9 @@
       "external": [
         "react"
       ]
-    },
-    "基于": "git+https://github.com/Yuuyuko-uu/dsh-qq-bridge.git"
+    }
   },
-  "author": "Yuuyuko-uu (https://github.com/Yuuyuko-uu)",
+  "author": "Speraymer",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Speraymer/dsh-yu-qq.git"

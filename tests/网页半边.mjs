@@ -8,7 +8,7 @@ globalThis.window = { __ModuleLoader__: { load: (o) => { 捕获 = o } } }
 globalThis.fetch = async (url) => {
   return {
     json: async () => ({
-      ok: true, 版本: '0.1.0',
+      ok: true, 版本: '2.0.0',
       配置: { 总开关: false, 试运行: true, 目标会话: '', 私聊QQ: '', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000' },
       NapCat状态: { 用户: 10001, 昵称: '测试号' },
       活着的会话: [{ id: 'session-X', 标题: '测试会话' }],
@@ -55,7 +55,7 @@ exports.apply({ get: (n) => (n === 'slots' ? slots : undefined) })
 
 // 预先填好「已经读到状态」的第一格（体），这样不用等 useEffect 拉数据，组件一次渲染就出整页
 const 初始态 = {
-  ok: true, 版本: '0.1.0',
+  ok: true, 版本: '2.0.0',
   配置: { 总开关: false, 试运行: true, 目标会话: '', 私聊QQ: '', 群号: '', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000' },
   NapCat状态: { 用户: 10001, 昵称: '测试号' },
   活着的会话: [{ id: 'session-X', 标题: '测试会话' }],
