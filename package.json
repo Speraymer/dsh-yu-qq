@@ -1,6 +1,6 @@
 {
     "name":  "dsh-yu-qq",
-    "version":  "2.0.2",
+    "version": "2.0.3",
     "description":  "DSH QQ 双向桥：群聊和私聊分会话、点名响应、离线补收、引用与表情支持。",
     "license":  "MIT",
     "type":  "module",
