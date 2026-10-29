@@ -34,7 +34,7 @@ writeFileSync(
   join(家, 'qq-bridge-config.json'),
   JSON.stringify({
     总开关: true, 试运行: false, 目标会话: 'session-X', 私聊会话: 'session-P', 私聊QQ: '123',
-    群号: '1131553414', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
+    群号: '100000001', 转私聊: true, 转群: false, NapCat: 'http://127.0.0.1:3000',
     发文件: true, 发文件最多: 3, 发文件上限MB: 20,
   }, null, 2),
   'utf8',
@@ -181,7 +181,7 @@ const 传们 = 发了.filter((x) => x.url.endsWith('/upload_private_file'))
 发了.length = 0
 writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
   总开关: true, 试运行: false, 目标会话: 'session-X', 群会话: 'session-G', 私聊QQ: '123',
-  群号: '1131553414', 转私聊: false, 转群: true, NapCat: 'http://127.0.0.1:3000',
+  群号: '100000001', 转私聊: false, 转群: true, NapCat: 'http://127.0.0.1:3000',
   发文件: true, 发文件最多: 3, 发文件上限MB: 20, 群发文件: true,
 }, null, 2), 'utf8')
 const 群agent = { followup: () => {}, session: { id: 'session-G' } }
@@ -192,13 +192,13 @@ const 群会话 = { id: 'session-G' }
 监听[0](群会话, 转完(31))
 await 睡(200)
 const 群传 = 发了.filter((x) => x.url.endsWith('/upload_group_file'))
-报('群里 → upload_group_file（带 group_id / folder / upload_file）', 群传.length === 1 && 群传[0].体.group_id === 1131553414 && 群传[0].体.folder === '' && 群传[0].体.upload_file === true, JSON.stringify(群传[0] && 群传[0].体))
+报('群里 → upload_group_file（带 group_id / folder / upload_file）', 群传.length === 1 && 群传[0].体.group_id === 100000001 && 群传[0].体.folder === '' && 群传[0].体.upload_file === true, JSON.stringify(群传[0] && 群传[0].体))
 
 // ⑧b 群发文件默认关着 → 不进群
 发了.length = 0
 writeFileSync(join(家, 'qq-bridge-config.json'), JSON.stringify({
   总开关: true, 试运行: false, 目标会话: 'session-X', 群会话: 'session-G', 私聊QQ: '123',
-  群号: '1131553414', 转私聊: false, 转群: true, NapCat: 'http://127.0.0.1:3000',
+  群号: '100000001', 转私聊: false, 转群: true, NapCat: 'http://127.0.0.1:3000',
   发文件: true,
 }, null, 2), 'utf8')
 监听[0](群会话, 助手消息(32, [{ type: 'text', text: '做好了\n[文件:报告.docx](报告.docx)' }]))

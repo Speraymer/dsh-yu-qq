@@ -22,7 +22,7 @@ const 报 = (标签, 过, 详情) => { if (!过) 挂了++; console.log(`${过 ? 
 
 const 主人号 = 123
 const 路人号 = 777
-const 群号 = 1131553414
+const 群号 = 100000001
 const PDF = Buffer.from('%PDF-1.7\n测试合集\n')
 
 let 群消息们 = []
